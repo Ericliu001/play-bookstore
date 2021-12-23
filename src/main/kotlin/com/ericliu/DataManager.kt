@@ -5,7 +5,7 @@ import com.ericliu.model.Book
 class DataManager {
     private val books = mutableListOf<Book>()
 
-    fun init() {
+    init {
         books.add(Book(gimmeId(), "How to grow apples", "Mr Appleton", 100.0f))
         books.add(Book(gimmeId(), "How to grow Oranges", "Mr Felix", 10.0f))
         books.add(Book(gimmeId(), "How to grow Lemons", "Mr Omer", 123.0f))
@@ -16,6 +16,28 @@ class DataManager {
 
     fun gimmeId(): String {
         return books.size.toString()
+    }
+
+    fun allBooks(): List<Book> {
+        return books
+    }
+
+    fun updateBook(book: Book) {
+        val index = books.indexOf(book)
+        if (index >= 0) {
+            books.removeAt(index)
+            books.add(index, book)
+        }
+    }
+
+    fun newBook(book: Book) {
+        books.add(book)
+    }
+
+    fun deleteBook(id: String): Book? {
+        val bookFound = books.find { it.id == id }
+        books.remove(bookFound)
+        return bookFound
     }
 
 

@@ -1,5 +1,6 @@
 package com.ericliu.plugins
 
+import com.ericliu.books
 import io.ktor.routing.*
 import io.ktor.http.*
 import io.ktor.features.*
@@ -14,8 +15,10 @@ fun Application.configureRouting() {
     
 
     routing {
+        books()
+
         get("/") {
-                call.respondText("Hello World!")
+                call.respondText("Hello World!!!")
             }
         install(StatusPages) {
             exception<AuthenticationException> { cause ->

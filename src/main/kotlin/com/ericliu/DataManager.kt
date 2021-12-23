@@ -22,12 +22,10 @@ class DataManager {
         return books
     }
 
-    fun updateBook(book: Book) {
-        val index = books.indexOf(book)
-        if (index >= 0) {
-            books.removeAt(index)
-            books.add(index, book)
-        }
+    fun updateBook(id: String, book: Book) {
+        val bookFound = books.find { it.id == id }
+        books.remove(bookFound)
+        books.add(book)
     }
 
     fun newBook(book: Book) {

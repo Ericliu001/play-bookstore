@@ -16,7 +16,10 @@ fun Route.books() {
         post("/{id}") {
             val id = call.parameters.get("id")
             val book = call.receive(Book::class)
-            dataManager.updateBook(book)
+
+            id?.let {
+                dataManager.updateBook(id, book)
+            }
             call.respondText { "The book has been updated $book" }
         }
 

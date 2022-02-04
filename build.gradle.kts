@@ -1,6 +1,7 @@
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
+val lint_version: String by project
 
 plugins {
     application
@@ -15,6 +16,7 @@ application {
 
 repositories {
     mavenCentral()
+    google()
     maven { url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers") }
 }
 
@@ -37,6 +39,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.3")
     implementation("org.jetbrains:kotlin-css-jvm:1.0.0-pre.129-kotlin-1.4.20")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    compileOnly("com.android.tools.lint:lint-api:$lint_version")
+    compileOnly("com.android.tools.lint:lint-checks:$lint_version")
+    testImplementation("com.android.tools.lint:lint-tests:$lint_version")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
